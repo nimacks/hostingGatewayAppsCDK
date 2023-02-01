@@ -35,6 +35,8 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
           },
         },
       }),
+      // @ts-ignore
+      platform: "WEB"
     });
 
     amplifyApp.addBranch("main");
