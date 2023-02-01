@@ -3,6 +3,9 @@ import * as cdk from 'aws-cdk-lib';
 import { SecretValue } from "aws-cdk-lib";
 import * as aws_codebuild from "aws-cdk-lib/aws-codebuild";
 import { Construct } from 'constructs';
+import * as dotenv from 'dotenv';
+
+dotenv.config()
 
 export class HostingGatewayAppsCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -12,8 +15,10 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
 
     const amplifyApp = new aws_amplify.App(this, `${initials}-amplify-app`, {
       sourceCodeProvider: new aws_amplify.GitHubSourceCodeProvider({
-        repository: "202301091107-amplify-cli-test-plan-spa-cra",
-        oauthToken: SecretValue.secretsManager("kold-github-token"),
+        repository: "202302011539-amplify-cra-vanilla",
+        oauthToken: SecretValue.unsafePlainText(process.env.GITHUB_TOKEN!),
+        //oauthToken: SecretValue.secretsManager("kold-github-token"),
+        //oauthToken: SecretValue.secretsManager("arn:aws:secretsmanager:us-east-2:074128318641:secret:kold-github-token-n2cK9Z"),
         owner: "kevinold",
       }),
       buildSpec: aws_codebuild.BuildSpec.fromObject({
