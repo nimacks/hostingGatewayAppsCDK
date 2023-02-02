@@ -12,6 +12,7 @@
     "deploy": "AWS_REGION=us-east-2 cdk deploy"
   },
   "devDependencies": {
+    "@types/glob": "^8.0.1",
     "@types/jest": "^27.5.2",
     "@types/node": "10.17.27",
     "@types/prettier": "2.6.0",
