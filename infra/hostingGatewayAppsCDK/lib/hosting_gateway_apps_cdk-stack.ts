@@ -39,6 +39,7 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
     super(scope, id, props);
 
     apps.forEach((app) => {
+      const appDir = `apps/${app.name}`;
       const amplifyApp = new aws_amplify.App(this, app.name, {
         sourceCodeProvider: new aws_amplify.GitHubSourceCodeProvider({
           repository: process.env.GIT_REPO!,
@@ -47,19 +48,22 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
         }),
         buildSpec: aws_codebuild.BuildSpec.fromObject({
           version: 1,
-          frontend: {
-            phases: {
-              preBuild: {
-                commands: ["npm install -g pnpm", "pnpm i"],
+          applications: {
+            frontend: {
+              phases: {
+                preBuild: {
+                  commands: ["npm install -g pnpm", "pnpm i"],
+                },
+                build: {
+                  commands: [`pnpm --filter ${appDir} build`],
+                },
               },
-              build: {
-                commands: [`pnpm --filter ${app.name} build`],
+              artifacts: {
+                baseDirectory: app.distdir,
+                files: ["**/*"],
               },
             },
-            artifacts: {
-              baseDirectory: app.distdir,
-              files: ["**/*"],
-            },
+            appRoot: appDir,
           },
         }),
         // @ts-ignore
@@ -80,10 +84,7 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
 
       // Enable monorepo support
       amplifyApp.addEnvironment("AMPLIFY_DIFF_DEPLOY", "false");
-      amplifyApp.addEnvironment(
-        "AMPLIFY_MONOREPO_APP_ROOT",
-        `apps/${app.name}`
-      );
+      amplifyApp.addEnvironment("AMPLIFY_MONOREPO_APP_ROOT", appDir);
     });
   }
 }
