@@ -4,8 +4,15 @@ import { SecretValue } from "aws-cdk-lib";
 import * as aws_codebuild from "aws-cdk-lib/aws-codebuild";
 import { Construct } from 'constructs';
 import * as dotenv from 'dotenv';
+import { sync as globSync } from "glob";
 
 dotenv.config()
+
+
+const apps = globSync("apps/*/").map(appDir => (
+  appDir.split("/")[1]
+))
+console.log(apps)
 
 export class HostingGatewayAppsCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -51,5 +58,7 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
     );
 
     //amplifyApp.addEnvironment("REACT_APP_BASE_API_URL", "test"); 
+    // AMPLIFY_DIFF_DEPLOY	false	All branches
+    // AMPLIFY_MONOREPO_APP_ROOT	apps/amplify-next-nx
   }
 }
