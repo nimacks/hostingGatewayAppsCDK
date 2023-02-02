@@ -1,7 +1,11 @@
 {
-    "private": "true",
-    "workspaces": [
-        "apps/*",
-        "infra/*"
-    ]
+    "name": "hosting-gateway-apps",
+    "private": true,
+    "version": "1.0.0",
+    "scripts": {},
+    "engines": {
+        "node": ">=16",
+        "npm": "DO_NOT_USE_NPM",
+        "pnpm": ">=7"
+    }
 }
