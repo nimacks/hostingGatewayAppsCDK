@@ -48,23 +48,29 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
         }),
         buildSpec: aws_codebuild.BuildSpec.fromObject({
           version: 1,
-          applications: {
-            frontend: {
-              phases: {
-                preBuild: {
-                  commands: ["npm install -g pnpm", "pnpm i"],
+          applications: [
+            {
+              frontend: {
+                phases: {
+                  preBuild: {
+                    commands: ["npm install -g pnpm", "pnpm i"],
+                  },
+                  build: {
+                    commands: [
+                      `pnpm --filter ${app.name} run build`,
+                      `ls -lah`,
+                      `ls -lah ${appDir}/${app.name}`,
+                    ],
+                  },
                 },
-                build: {
-                  commands: [`pnpm --filter ${appDir} build`],
+                artifacts: {
+                  baseDirectory: `${appDir}/${app.distdir}`,
+                  files: ["**/*"],
                 },
               },
-              artifacts: {
-                baseDirectory: app.distdir,
-                files: ["**/*"],
-              },
+              appRoot: appDir,
             },
-            appRoot: appDir,
-          },
+          ],
         }),
         // @ts-ignore
         platform: app.platform,
