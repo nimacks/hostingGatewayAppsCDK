@@ -1,64 +1,89 @@
 import * as aws_amplify from "@aws-cdk/aws-amplify-alpha";
-import * as cdk from 'aws-cdk-lib';
+import { RedirectStatus } from "@aws-cdk/aws-amplify-alpha";
+import * as cdk from "aws-cdk-lib";
 import { SecretValue } from "aws-cdk-lib";
 import * as aws_codebuild from "aws-cdk-lib/aws-codebuild";
-import { Construct } from 'constructs';
-import * as dotenv from 'dotenv';
-import { sync as globSync } from "glob";
+import { Construct } from "constructs";
+import * as dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
+// const apps = globSync("../../apps/*/").map(appDir => (
+//   appDir.split("/")[3]
+// ))
+//console.log(apps)
 
-const apps = globSync("apps/*/").map(appDir => (
-  appDir.split("/")[1]
-))
-console.log(apps)
+const apps = [
+  {
+    name: "hgw-tests-cra",
+    distdir: "build",
+    platform: "WEB",
+    spa: true,
+  },
+  // {
+  //   name: "hgw-tests-cna",
+  //   distdir: ".next",
+  //   platform: "WEB_COMPUTE",
+  //   spa: false,
+  // },
+  // {
+  //   name: "hgw-tests-astro-html",
+  //   distdir: "dist",
+  //   platform: "WEB",
+  //   spa: false,
+  // },
+];
 
 export class HostingGatewayAppsCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const initials = "TEST"
+    apps.forEach((app) => {
+      const amplifyApp = new aws_amplify.App(this, app.name, {
+        sourceCodeProvider: new aws_amplify.GitHubSourceCodeProvider({
+          repository: process.env.GIT_REPO!,
+          oauthToken: SecretValue.unsafePlainText(process.env.GITHUB_TOKEN!),
+          owner: process.env.GITHUB_OWNER!,
+        }),
+        buildSpec: aws_codebuild.BuildSpec.fromObject({
+          version: 1,
+          frontend: {
+            phases: {
+              preBuild: {
+                commands: ["npm install -g pnpm", "pnpm i"],
+              },
+              build: {
+                commands: [`pnpm --filter ${app.name} build`],
+              },
+            },
+            artifacts: {
+              baseDirectory: app.distdir,
+              files: ["**/*"],
+            },
+          },
+        }),
+        // @ts-ignore
+        platform: app.platform,
+      });
 
-    const amplifyApp = new aws_amplify.App(this, `${initials}-amplify-app`, {
-      sourceCodeProvider: new aws_amplify.GitHubSourceCodeProvider({
-        repository: "202302011539-amplify-cra-vanilla",
-        oauthToken: SecretValue.unsafePlainText(process.env.GITHUB_TOKEN!),
-        //oauthToken: SecretValue.secretsManager("kold-github-token"),
-        //oauthToken: SecretValue.secretsManager("arn:aws:secretsmanager:us-east-2:074128318641:secret:kold-github-token-n2cK9Z"),
-        owner: "kevinold",
-      }),
-      buildSpec: aws_codebuild.BuildSpec.fromObject({
-        version: 1,
-        frontend: {
-          phases: {
-            preBuild: {
-              commands: [
-                "npm ci",
-              ],
-            },
-            build: {
-              commands: ["npm run build"],
-            },
-          },
-          artifacts: {
-            baseDirectory: "build",
-            files: ["**/*"],
-          },
-        },
-      }),
-      // @ts-ignore
-      platform: "WEB"
+      amplifyApp.addBranch("main");
+
+      //aws_amplify.CustomRule.SINGLE_PAGE_APPLICATION_REDIRECT
+      if (app.spa) {
+        amplifyApp.addCustomRule({
+          source:
+            "</^[^.]+$|.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
+          status: RedirectStatus.REWRITE,
+          target: "index.html",
+        });
+      }
+
+      // Enable monorepo support
+      amplifyApp.addEnvironment("AMPLIFY_DIFF_DEPLOY", "false");
+      amplifyApp.addEnvironment(
+        "AMPLIFY_MONOREPO_APP_ROOT",
+        `apps/${app.name}`
+      );
     });
-
-    amplifyApp.addBranch("main");
-
-    amplifyApp.addCustomRule(
-      aws_amplify.CustomRule.SINGLE_PAGE_APPLICATION_REDIRECT
-    );
-
-    //amplifyApp.addEnvironment("REACT_APP_BASE_API_URL", "test"); 
-    // AMPLIFY_DIFF_DEPLOY	false	All branches
-    // AMPLIFY_MONOREPO_APP_ROOT	apps/amplify-next-nx
   }
 }
