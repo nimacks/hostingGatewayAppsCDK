@@ -2,7 +2,9 @@
     "name": "hosting-gateway-apps",
     "private": true,
     "version": "1.0.0",
-    "scripts": {},
+    "scripts": {
+        "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy"
+    },
     "engines": {
         "node": ">=16",
         "npm": "DO_NOT_USE_NPM",
