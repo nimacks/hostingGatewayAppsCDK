@@ -9,7 +9,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "deploy": "AWS_REGION=us-east-2 cdk deploy"
+    "deploy": "AWS_REGION=us-east-2 cdk deploy",
+    "destroy": "AWS_REGION=us-east-2 cdk destroy"
   },
   "devDependencies": {
     "@types/glob": "^8.0.1",
