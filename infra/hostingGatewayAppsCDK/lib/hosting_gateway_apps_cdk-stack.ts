@@ -5,6 +5,7 @@ import { CfnOutput, SecretValue } from "aws-cdk-lib";
 import * as aws_codebuild from "aws-cdk-lib/aws-codebuild";
 import { Construct } from "constructs";
 import * as dotenv from "dotenv";
+import apps from "../../../apps.json";
 
 dotenv.config();
 
@@ -13,26 +14,26 @@ dotenv.config();
 // ))
 //console.log(apps)
 
-const apps = [
-  {
-    name: "hgw-tests-cra",
-    distdir: "build",
-    platform: "WEB",
-    spa: true,
-  },
-  {
-    name: "hgw-tests-html",
-    distdir: "dist",
-    platform: "WEB",
-    spa: false,
-  },
-  // {
-  //   name: "hgw-tests-cna",
-  //   distdir: ".next",
-  //   platform: "WEB_COMPUTE",
-  //   spa: false,
-  // },
-];
+// const apps = [
+//   {
+//     name: "hgw-tests-cra",
+//     distdir: "build",
+//     platform: "WEB",
+//     spa: true,
+//   },
+//   {
+//     name: "hgw-tests-html",
+//     distdir: "dist",
+//     platform: "WEB",
+//     spa: false,
+//   },
+// {
+//   name: "hgw-tests-cna",
+//   distdir: ".next",
+//   platform: "WEB_COMPUTE",
+//   spa: false,
+// },
+// ];
 
 export class HostingGatewayAppsCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {

@@ -1,0 +1,14 @@
+[
+    {
+        "name": "hgw-tests-cra",
+        "distdir": "build",
+        "platform": "WEB",
+        "spa": true
+    },
+    {
+        "name": "hgw-tests-html",
+        "distdir": "dist",
+        "platform": "WEB",
+        "spa": false
+    }
+]
