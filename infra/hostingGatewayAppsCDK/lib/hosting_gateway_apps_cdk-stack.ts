@@ -1,7 +1,7 @@
 import * as aws_amplify from "@aws-cdk/aws-amplify-alpha";
 import { RedirectStatus } from "@aws-cdk/aws-amplify-alpha";
 import * as cdk from "aws-cdk-lib";
-import { SecretValue } from "aws-cdk-lib";
+import { CfnOutput, SecretValue } from "aws-cdk-lib";
 import * as aws_codebuild from "aws-cdk-lib/aws-codebuild";
 import { Construct } from "constructs";
 import * as dotenv from "dotenv";
@@ -90,6 +90,10 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
       // Enable monorepo support
       amplifyApp.addEnvironment("AMPLIFY_DIFF_DEPLOY", "false");
       amplifyApp.addEnvironment("AMPLIFY_MONOREPO_APP_ROOT", appDir);
+
+      new CfnOutput(this, `${app.name}AmplifyAppId`, {
+        value: `${app.name}|${amplifyApp.appId}`,
+      });
     });
   }
 }

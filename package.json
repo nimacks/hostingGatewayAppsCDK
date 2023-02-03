@@ -3,7 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "scripts": {
-        "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy"
+        "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy -O cdk-outputs.json"
     },
     "engines": {
         "node": ">=16",
