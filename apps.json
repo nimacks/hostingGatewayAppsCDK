@@ -4,13 +4,13 @@
     "distdir": "dist",
     "platform": "WEB",
     "spa": false,
-    "id": "d1lu0rbuhu3qox"
+    "id": "d36iw32jo328pl"
   },
   {
     "name": "hgw-tests-cra",
     "distdir": "build",
     "platform": "WEB",
     "spa": true,
-    "id": "dmq0h48r45hdk"
+    "id": "d35z59pl2zq30c"
   }
 ]
