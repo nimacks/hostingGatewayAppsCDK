@@ -15,5 +15,6 @@
         "@types/node": "10.17.27",
         "cypress": "^12.3.0",
         "lodash": "^4.17.21"
-    }
+    },
+    "prettier": {}
 }

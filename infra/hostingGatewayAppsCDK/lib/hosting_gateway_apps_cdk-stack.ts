@@ -6,6 +6,8 @@ import * as aws_codebuild from "aws-cdk-lib/aws-codebuild";
 import { Construct } from "constructs";
 import * as dotenv from "dotenv";
 import apps from "../../../apps.json";
+// @ts-ignore
+import { isHTMLApp } from "../../../utils.js";
 
 dotenv.config();
 
@@ -85,6 +87,14 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
             "</^[^.]+$|.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
           status: RedirectStatus.REWRITE,
           target: "index.html",
+        });
+      }
+
+      if (isHTMLApp(app)) {
+        amplifyApp.addCustomRule({
+          source: "/original.html",
+          status: RedirectStatus.TEMPORARY_REDIRECT,
+          target: "/destination.html",
         });
       }
 

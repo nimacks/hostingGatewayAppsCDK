@@ -1,11 +1,13 @@
 [
     {
+        "id": "dmq0h48r45hdk",
         "name": "hgw-tests-cra",
         "distdir": "build",
         "platform": "WEB",
         "spa": true
     },
     {
+        "id": "d1lu0rbuhu3qox",
         "name": "hgw-tests-html",
         "distdir": "dist",
         "platform": "WEB",
