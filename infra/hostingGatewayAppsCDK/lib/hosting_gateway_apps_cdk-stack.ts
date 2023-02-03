@@ -20,16 +20,16 @@ const apps = [
     platform: "WEB",
     spa: true,
   },
+  {
+    name: "hgw-tests-html",
+    distdir: "dist",
+    platform: "WEB",
+    spa: false,
+  },
   // {
   //   name: "hgw-tests-cna",
   //   distdir: ".next",
   //   platform: "WEB_COMPUTE",
-  //   spa: false,
-  // },
-  // {
-  //   name: "hgw-tests-astro-html",
-  //   distdir: "dist",
-  //   platform: "WEB",
   //   spa: false,
   // },
 ];

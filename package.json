@@ -3,11 +3,16 @@
     "private": true,
     "version": "1.0.0",
     "scripts": {
-        "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy -O cdk-outputs.json"
+        "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy -O cdk-outputs.json",
+        "cy:open": "cypress open --e2e"
     },
     "engines": {
         "node": ">=16",
         "npm": "DO_NOT_USE_NPM",
         "pnpm": ">=7"
+    },
+    "dependencies": {
+        "@types/node": "10.17.27",
+        "cypress": "^12.3.0"
     }
 }
