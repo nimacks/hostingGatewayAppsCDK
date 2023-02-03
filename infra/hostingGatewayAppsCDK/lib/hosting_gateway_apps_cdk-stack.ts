@@ -56,11 +56,7 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
                     commands: ["npm install -g pnpm", "pnpm i"],
                   },
                   build: {
-                    commands: [
-                      `pnpm --filter ${app.name} run build`,
-                      `ls -lah`,
-                      `ls -lah ${appDir}/${app.name}`,
-                    ],
+                    commands: [`pnpm --filter ${app.name} run build`],
                   },
                 },
                 artifacts: {
