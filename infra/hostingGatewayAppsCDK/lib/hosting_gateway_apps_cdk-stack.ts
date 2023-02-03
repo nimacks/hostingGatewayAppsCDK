@@ -84,7 +84,7 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
       if (app.spa) {
         amplifyApp.addCustomRule({
           source:
-            "</^[^.]+$|.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
+            "/</^[^.]+$|.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
           status: RedirectStatus.REWRITE,
           target: "index.html",
         });
