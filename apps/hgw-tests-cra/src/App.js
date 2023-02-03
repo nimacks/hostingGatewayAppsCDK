@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import AComp from "./AComp";
+import BComp from "./BComp";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul>
+        <li> <Link to="/a" data-test="a-link">Navigate to A</Link></li>
+        <li><Link to="/b" data-test="b-link">Navigate to B</Link></li>
+      </ul>
+      <div data-test="content">
+        <Routes>
+          <Route path="/a" element={<AComp />} />
+          <Route path="/b" element={<BComp />} />
+        </Routes>
+      </div>
     </div>
   );
 }

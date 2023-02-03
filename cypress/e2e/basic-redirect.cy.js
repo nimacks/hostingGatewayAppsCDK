@@ -1,19 +1,21 @@
 /// <reference types="cypress" />
-import { filter, forEach } from "lodash";
+import { forEach } from "lodash";
 import apps from "../../apps.json";
 import { isHTMLApp } from "../../utils";
 
 // import { HostingGatewayAppsCdkStack as apps } from "../../infra/hostingGatewayAppsCDK/cdk-outputs.json";
 // console.log(apps)
 
-const htmlApps = filter(apps, isHTMLApp);
+//const htmlApps = filter(apps, isHTMLApp);
 
 describe("Basic redirect - 302", () => {
-  forEach(htmlApps, (app) => {
+  forEach(apps, (app) => {
     const baseUrl = `https://main.${app.id}.amplifyapp.com`;
-    describe(`Basic redirect HTML ${app.name}`, () => {
-      const sourceUri = `${baseUrl}/original.html`;
-      const destinationUri = `${baseUrl}/destination.html`;
+    const sourcePath = isHTMLApp(app) ? "/original.html" : "/a";
+    const destinationPath = isHTMLApp(app) ? "/destination.html" : "/b";
+    describe(`Basic redirect ${app.name}`, () => {
+      const sourceUri = `${baseUrl}${sourcePath}`;
+      const destinationUri = `${baseUrl}${destinationPath}`;
       it(`should redirect ${sourceUri} to ${destinationUri}`, () => {
         cy.visit(sourceUri);
         cy.url().should("contain", destinationUri);
