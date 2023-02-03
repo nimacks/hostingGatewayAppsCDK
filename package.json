@@ -4,6 +4,7 @@
     "version": "1.0.0",
     "scripts": {
         "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy -O cdk-outputs.json",
+        "infra:destroy": "pnpm --filter hosting_gateway_apps_cdk run destroy",
         "updateAppIds": "node updateAppsJsonWithAppIds.js",
         "cy:open": "cypress open --e2e"
     },
