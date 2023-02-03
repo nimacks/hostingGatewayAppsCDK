@@ -3,9 +3,6 @@ import { forEach } from "lodash";
 import apps from "../../apps.json";
 import { isHTMLApp } from "../../utils";
 
-// import { HostingGatewayAppsCdkStack as apps } from "../../infra/hostingGatewayAppsCDK/cdk-outputs.json";
-// console.log(apps)
-
 //const htmlApps = filter(apps, isHTMLApp);
 
 describe("Basic redirect - 302", () => {

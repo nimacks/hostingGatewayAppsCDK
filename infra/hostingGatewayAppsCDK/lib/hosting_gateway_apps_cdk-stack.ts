@@ -97,10 +97,19 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
       }
 
       if (isHTMLApp(app)) {
+        // Basic Redirect - 302
         amplifyApp.addCustomRule({
           source: "/original.html",
           status: RedirectStatus.TEMPORARY_REDIRECT,
           target: "/destination.html",
+        });
+
+        // US Geo Redirect - 302
+        amplifyApp.addCustomRule({
+          source: "/geo.html",
+          status: RedirectStatus.TEMPORARY_REDIRECT,
+          target: "/us/geo.html",
+          condition: "<US>",
         });
       }
 
