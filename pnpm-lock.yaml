@@ -6,9 +6,11 @@ importers:
     specifiers:
       '@types/node': 10.17.27
       cypress: ^12.3.0
+      lodash: ^4.17.21
     dependencies:
       '@types/node': 10.17.27
       cypress: 12.5.1
+      lodash: 4.17.21
 
   apps/hgw-tests-cra:
     specifiers:
