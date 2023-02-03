@@ -22,6 +22,6 @@ forEach(CDKOutput["HostingGatewayAppsCdkStack"], function (app) {
 });
 
 fs.writeFileSync(
-  path.join(__dirname, "appsWithIds.json"),
+  path.join(__dirname, "apps.json"),
   JSON.stringify(appsWithIds, null, 2)
 );

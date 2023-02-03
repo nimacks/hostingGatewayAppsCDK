@@ -1,14 +1,16 @@
 [
-    {
-        "name": "hgw-tests-cra",
-        "distdir": "build",
-        "platform": "WEB",
-        "spa": true
-    },
-    {
-        "name": "hgw-tests-html",
-        "distdir": "dist",
-        "platform": "WEB",
-        "spa": false
-    }
+  {
+    "name": "hgw-tests-html",
+    "distdir": "dist",
+    "platform": "WEB",
+    "spa": false,
+    "id": "d1lu0rbuhu3qox"
+  },
+  {
+    "name": "hgw-tests-cra",
+    "distdir": "build",
+    "platform": "WEB",
+    "spa": true,
+    "id": "dmq0h48r45hdk"
+  }
 ]
