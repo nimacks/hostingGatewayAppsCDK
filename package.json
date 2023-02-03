@@ -6,6 +6,7 @@
         "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy -O cdk-outputs.json",
         "infra:destroy": "pnpm --filter hosting_gateway_apps_cdk run destroy",
         "updateAppIds": "node updateAppsJsonWithAppIds.js",
+        "precy:open": "pnpm run updateAppIds",
         "cy:open": "cypress open --e2e"
     },
     "engines": {
