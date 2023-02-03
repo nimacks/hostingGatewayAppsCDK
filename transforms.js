@@ -7,15 +7,18 @@ const CDKOutput = require("./infra/hostingGatewayAppsCDK/cdk-outputs.json");
 //const __filename = fileURLToPath(import.meta.url);
 //const __dirname = path.dirname(__filename);
 
-const { filter, forEach } = lodash;
+const { find, forEach } = lodash;
 let appsWithIds = [];
 
 forEach(CDKOutput["HostingGatewayAppsCdkStack"], function (app) {
   const [name, id] = app.split("|");
   console.log(name, id);
 
-  const appRecord = filter(apps, (a) => a.name === name);
-  appsWithIds.push({ ...appRecord, id });
+  const appRecord = find(apps, (a) => a.name === name);
+  // @ts-ignore
+  appRecord["id"] = id;
+  appsWithIds.push(appRecord);
+  console.log(appsWithIds);
 });
 
 fs.writeFileSync(
