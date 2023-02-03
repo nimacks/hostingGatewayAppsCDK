@@ -63,7 +63,7 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
                   },
                 },
                 artifacts: {
-                  baseDirectory: `${appDir}/${app.distdir}`,
+                  baseDirectory: app.distdir,
                   files: ["**/*"],
                 },
               },
