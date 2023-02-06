@@ -10,8 +10,7 @@ CDK_DEFAULT_REGION=us-east-2
 CDK_BETA_REGION=ca-central-1
 
 echo "Bootstrapping CDK Environments"
-cdk bootstrap aws://$AWS_ACCOUNT_ID/$CDK_DEFAULT_REGION
-cdk bootstrap aws://$AWS_ACCOUNT_ID/$CDK_BETA_REGION
+cdk bootstrap aws://$AWS_ACCOUNT_ID/$CDK_DEFAULT_REGION aws://$AWS_ACCOUNT_ID/$CDK_BETA_REGION
 
 echo "Installing pnpm"
 npm install -g pnpm
