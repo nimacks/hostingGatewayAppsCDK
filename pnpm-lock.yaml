@@ -12,6 +12,26 @@ importers:
       cypress: 12.5.1
       lodash: 4.17.21
 
+  apps/hgw-tests-cna:
+    specifiers:
+      '@next/font': 13.1.6
+      '@types/node': 18.11.19
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      next: 13.1.6
+      react: 18.2.0
+      react-dom: 18.2.0
+      typescript: 4.9.5
+    dependencies:
+      '@next/font': 13.1.6
+      '@types/node': 18.11.19
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      typescript: 4.9.5
+
   apps/hgw-tests-cra:
     specifiers:
       '@testing-library/jest-dom': ^5.16.5
@@ -43,26 +63,6 @@ importers:
       astro: 2.0.6
       dotenv: 16.0.3
       prettier: 2.8.3
-
-  apps/hgw-tests-nextjs:
-    specifiers:
-      '@next/font': 13.1.6
-      '@types/node': 18.11.19
-      '@types/react': 18.0.27
-      '@types/react-dom': 18.0.10
-      next: 13.1.6
-      react: 18.2.0
-      react-dom: 18.2.0
-      typescript: 4.9.5
-    dependencies:
-      '@next/font': 13.1.6
-      '@types/node': 18.11.19
-      '@types/react': 18.0.27
-      '@types/react-dom': 18.0.10
-      next: 13.1.6_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      typescript: 4.9.5
 
   infra/hostingGatewayAppsCDK:
     specifiers:
