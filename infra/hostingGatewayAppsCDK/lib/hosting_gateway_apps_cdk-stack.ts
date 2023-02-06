@@ -106,9 +106,9 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
 
         // US Geo Redirect - 302
         amplifyApp.addCustomRule({
-          source: "/geo.html",
+          source: "/documents/<*>",
           status: RedirectStatus.TEMPORARY_REDIRECT,
-          target: "/us/geo.html",
+          target: "/documents/us/<*>",
           condition: "<US>",
         });
       }

@@ -8,8 +8,10 @@ import { isHTMLApp } from "../../utils";
 describe("US Geo Redirect - 302", () => {
   forEach(apps, (app) => {
     const baseUrl = `https://main.${app.id}.amplifyapp.com`;
-    const sourcePath = isHTMLApp(app) ? "/geo.html" : "/a";
-    const destinationPath = isHTMLApp(app) ? "/us/geo.html" : "/b";
+    const sourcePath = isHTMLApp(app) ? "/documents/geo-redirect.html" : "/a";
+    const destinationPath = isHTMLApp(app)
+      ? "documents/us/geo-redirect.html"
+      : "/b";
     describe(`Basic redirect ${app.name}`, () => {
       const sourceUri = `${baseUrl}${sourcePath}`;
       const destinationUri = `${baseUrl}${destinationPath}`;
