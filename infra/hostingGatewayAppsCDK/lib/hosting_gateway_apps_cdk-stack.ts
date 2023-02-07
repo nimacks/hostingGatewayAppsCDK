@@ -83,17 +83,18 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
       //aws_amplify.CustomRule.SINGLE_PAGE_APPLICATION_REDIRECT
       if (app.spa) {
         amplifyApp.addCustomRule({
+          // must prepend slash "/" for SPA Custom Rule to work
           source:
-            "</^[^.]+$|.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
+            "/</^[^.]+$|.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp)$)([^.]+$)/>",
           status: RedirectStatus.REWRITE,
           target: "/index.html",
         });
-        // does this make sense?
-        amplifyApp.addCustomRule({
-          source: "/a",
-          status: RedirectStatus.TEMPORARY_REDIRECT,
-          target: "/b",
-        });
+        // likely not possible to add additional redirects for a SPA
+        // amplifyApp.addCustomRule({
+        //   source: "/a",
+        //   status: RedirectStatus.TEMPORARY_REDIRECT,
+        //   target: "/b",
+        // });
       }
 
       if (isHTMLApp(app)) {
