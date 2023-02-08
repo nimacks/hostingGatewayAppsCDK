@@ -3,7 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "scripts": {
-        "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy -O cdk-outputs.json",
+        "infra:deploy": "pnpm --filter hosting_gateway_apps_cdk run deploy",
         "infra:destroy": "pnpm --filter hosting_gateway_apps_cdk run destroy",
         "updateAppIds": "node updateAppsJsonWithAppIds.js",
         "precy:open": "pnpm run updateAppIds",
