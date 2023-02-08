@@ -1,6 +1,6 @@
-//const fs = require("fs");
+const fs = require("fs");
 const lodash = require("lodash/fp");
-//const path = require("path");
+const path = require("path");
 const apps = require("./apps.json");
 const CDKOutput = require("./infra/hostingGatewayAppsCDK/cdk-outputs.json");
 
@@ -19,34 +19,14 @@ const appsWithIds = pipe(
 
 console.log(appsWithIds);
 
-// mapValues(CDKOutput, function (stack) {
-//   //console.log(stack);
-//   mapValues(stack, function (app) {
-//     const [name, id] = app.split("|");
-//     console.log(app);
-//     appsWithIds[name] = id;
-//   });
-// });
+const appsJson = map((app) => {
+  app["appIds"] = appsWithIds[app.name];
+  return app;
+}, apps);
 
-// console.log(appsWithIds);
+console.log(appsJson);
 
-// each(CDKOutput, function (stack) {
-//   //console.log("stack", stack);
-//   forEach(stack, function (app) {
-//     const [name, id] = app.split("|");
-//     console.log(name, id);
-
-//     appsWithIds[name].push(id);
-//     //const appRecord = find(apps, (a) => a.name === name);
-//     // @ts-ignore
-//     //appRecord["id"] = id;
-//     //appsWithIds.push(appRecord);
-//     //console.log(appsWithIds);
-//   });
-// });
-// console.log(appsWithIds);
-
-// fs.writeFileSync(
-//   path.join(__dirname, "apps.json"),
-//   JSON.stringify(appsWithIds, null, 2)
-// );
+fs.writeFileSync(
+  path.join(__dirname, "apps.json"),
+  JSON.stringify(appsJson, null, 2)
+);
