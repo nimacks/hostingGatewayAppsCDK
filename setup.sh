@@ -1,9 +1,13 @@
 #!/bin/sh
 
+infraEnvExample="infra/hostingGatewayAppsCDK/.env.example"
 infraEnv="infra/hostingGatewayAppsCDK/.env"
 
-echo "Installing AWS CDK"
-npm install -g aws-cdk
+echo "Installing AWS CDK and pnpm"
+npm install -g aws-cdk pnpm
+
+echo "Installing dependencies"
+pnpm install
 
 echo "Set default region for CDK"
 export CDK_DEFAULT_REGION=us-east-2
@@ -17,25 +21,17 @@ for REGION in ${[APPS@]}; do
   cdk bootstrap aws://$AWS_ACCOUNT_ID/$REGION
 done
 
-echo "Installing pnpm"
-npm install -g pnpm
-
-echo "Installing dependencies"
-pnpm install
-
 echo "Setup app.json"
 if [ ! -f apps.json ]
 then
   cp apps.example.json apps.json
 fi
 
-echo "Scaffolding $infraEnv"
+echo "Setup $infraEnv"
 if [ ! -f $infraEnv ]
 then
-  echo "GITHUB_TOKEN=<YOUR-GITHUB-TOKEN>
-  GITHUB_OWNER=<YOUR-GITHUB-USERNAME>
-  GIT_REPO=hostingGatewayAppsCDK" >> $infraEnv
+  cp $infraEnvExample $infraEnv
 fi
 echo "Done.\n\n"
 
-echo "Update `infra/hostingGatewayAppsCDK/.env` with environment variables"
+echo "Update $infraEnv with environment variables"
