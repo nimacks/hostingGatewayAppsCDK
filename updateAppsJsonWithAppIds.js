@@ -4,18 +4,20 @@ const lodash = require("lodash/fp");
 const apps = require("./apps.json");
 const CDKOutput = require("./infra/hostingGatewayAppsCDK/cdk-outputs.json");
 
-const { identity, map, pipe, tap, flatten } = lodash;
-const debug = tap(console.log);
+const { identity, map, pipe, tap, flatten, split, reduce } = lodash;
+//const debug = tap(console.log);
 
-const res = pipe(
+const appsWithIds = pipe(
   map((a) => map(identity, a)),
-  flatten
-  //debug
+  flatten,
+  reduce((result, v) => {
+    const [name, id] = split("|", v);
+    (result[name] || (result[name] = [])).push(id);
+    return result;
+  }, {})
 )(CDKOutput);
 
-console.log(res);
-
-// let appsWithIds = {};
+console.log(appsWithIds);
 
 // mapValues(CDKOutput, function (stack) {
 //   //console.log(stack);
