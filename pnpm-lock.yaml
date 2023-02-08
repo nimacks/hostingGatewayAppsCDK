@@ -66,13 +66,13 @@ importers:
 
   infra/hostingGatewayAppsCDK:
     specifiers:
-      '@aws-cdk/aws-amplify-alpha': ^2.63.0-alpha.0
+      '@aws-cdk/aws-amplify-alpha': ^2.63.2-alpha.0
       '@types/glob': ^8.0.1
       '@types/jest': ^27.5.2
       '@types/node': 10.17.27
       '@types/prettier': 2.6.0
       aws-cdk: 2.63.0
-      aws-cdk-lib: 2.63.0
+      aws-cdk-lib: 2.63.2
       constructs: ^10.0.0
       dotenv: ^16.0.3
       jest: ^27.5.1
@@ -81,8 +81,8 @@ importers:
       ts-node: ^10.9.1
       typescript: ~3.9.7
     dependencies:
-      '@aws-cdk/aws-amplify-alpha': 2.63.0-alpha.0_3yyewvqukk7anpdb4vdx2tvstq
-      aws-cdk-lib: 2.63.0_constructs@10.1.238
+      '@aws-cdk/aws-amplify-alpha': 2.63.2-alpha.0_mpsgyaipchexpehy4xzzx2boa4
+      aws-cdk-lib: 2.63.2_constructs@10.1.238
       constructs: 10.1.238
       dotenv: 16.0.3
       source-map-support: 0.5.21
@@ -212,14 +212,14 @@ packages:
     resolution: {integrity: sha512-Tcad2Bb/FX/r+IblNsmDaSEiivn9JCeM42CM1OHBUiSB4PfZ3gvP5lUosxMYPu7X/UGGR6pjwkWTSUMthcVHVQ==}
     dev: false
 
-  /@aws-cdk/aws-amplify-alpha/2.63.0-alpha.0_3yyewvqukk7anpdb4vdx2tvstq:
-    resolution: {integrity: sha512-Q7Zg6iIOtQ+45E3gaia+LCrZlTGPrnUP6D3PwDLqxqAEikfJwTBWEQwaNrqlMcs9v873ga6Cqg3lh/kdHYj0Gw==}
+  /@aws-cdk/aws-amplify-alpha/2.63.2-alpha.0_mpsgyaipchexpehy4xzzx2boa4:
+    resolution: {integrity: sha512-JNBRfZ1jZvyyeTGkUJM+GC3cD4ufCq1kFIf8w6ayPgCg8mItFkovKUIvDVrhyOUdNfNdCMbAUl6qy9fztX3VHA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
-      aws-cdk-lib: ^2.63.0
+      aws-cdk-lib: ^2.63.2
       constructs: ^10.0.0
     dependencies:
-      aws-cdk-lib: 2.63.0_constructs@10.1.238
+      aws-cdk-lib: 2.63.2_constructs@10.1.238
       constructs: 10.1.238
     dev: false
 
@@ -1542,10 +1542,6 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-
-  /@balena/dockerignore/1.0.2:
-    resolution: {integrity: sha512-wMue2Sy4GAVTk6Ic4tJVcnfdau+gx2EnG7S+uAEe+TWJFqE4YoWN4/H8MSLj4eYJKxGg26lZwboEniNiNwZQ6Q==}
-    dev: false
 
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
@@ -3870,8 +3866,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /aws-cdk-lib/2.63.0_constructs@10.1.238:
-    resolution: {integrity: sha512-+thToi/7coSufwaEafgofTaZERXxFUeEwEIp0SGU0wHz6IbPll5yAzoEIkE51kM8AMCMfqwJddYOjM3qs43cPg==}
+  /aws-cdk-lib/2.63.2_constructs@10.1.238:
+    resolution: {integrity: sha512-Kk9aP79O+9UJ3Bw0wjquMD+RpWPQ/Fa4wUcP5mdpROpoipPXsFFZPTXT8j8kp2oFOZa9OHxacTF06+/M0H/bWQ==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       constructs: ^10.0.0
@@ -3879,16 +3875,7 @@ packages:
       '@aws-cdk/asset-awscli-v1': 2.2.55
       '@aws-cdk/asset-kubectl-v20': 2.1.1
       '@aws-cdk/asset-node-proxy-agent-v5': 2.0.44
-      '@balena/dockerignore': 1.0.2
-      case: 1.6.3
       constructs: 10.1.238
-      fs-extra: 9.1.0
-      ignore: 5.2.4
-      jsonschema: 1.4.1
-      minimatch: 3.1.2
-      punycode: 2.3.0
-      semver: 7.3.8
-      yaml: 1.10.2
     dev: false
     bundledDependencies:
       - '@balena/dockerignore'
@@ -4332,11 +4319,6 @@ packages:
   /case-sensitive-paths-webpack-plugin/2.4.0:
     resolution: {integrity: sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==}
     engines: {node: '>=4'}
-    dev: false
-
-  /case/1.6.3:
-    resolution: {integrity: sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==}
-    engines: {node: '>= 0.8.0'}
     dev: false
 
   /caseless/0.12.0:
@@ -8152,10 +8134,6 @@ packages:
   /jsonpointer/5.0.1:
     resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
     engines: {node: '>=0.10.0'}
-    dev: false
-
-  /jsonschema/1.4.1:
-    resolution: {integrity: sha512-S6cATIPVv1z0IlxdN+zUk5EPjkGCdnhN4wVSBlvoUO1tOLJootbo9CquNJmbIh4yikWHiUedhRYrNPn1arpEmQ==}
     dev: false
 
   /jsprim/2.0.2:
