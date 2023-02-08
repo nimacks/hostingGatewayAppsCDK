@@ -54,3 +54,7 @@ GIT_REPO=hostingGatewayAppsCDK
 ## Destroy Infrastructure
 
 1. Run `pnpm run infra:destroy`
+
+NOTE: GitHub webhooks are not cleaned up after destroying.
+Navigate to https://github.com/<YOUR-GITHUB-USERNAME>/hostingGatewayAppsCDK/settings/hooks
+to delete.

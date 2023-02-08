@@ -7,7 +7,7 @@ import { Construct } from "constructs";
 import * as dotenv from "dotenv";
 import apps from "../../../apps.json";
 // @ts-ignore
-import { isHTMLApp } from "../../../utils.js";
+import { isHTMLApp, isWebCompute } from "../../../utils.js";
 
 dotenv.config();
 
@@ -15,27 +15,6 @@ dotenv.config();
 //   appDir.split("/")[3]
 // ))
 //console.log(apps)
-
-// const apps = [
-//   {
-//     name: "hgw-tests-cra",
-//     distdir: "build",
-//     platform: "WEB",
-//     spa: true,
-//   },
-//   {
-//     name: "hgw-tests-html",
-//     distdir: "dist",
-//     platform: "WEB",
-//     spa: false,
-//   },
-// {
-//   name: "hgw-tests-cna",
-//   distdir: ".next",
-//   platform: "WEB_COMPUTE",
-//   spa: false,
-// },
-// ];
 
 export class HostingGatewayAppsCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -97,7 +76,7 @@ export class HostingGatewayAppsCdkStack extends cdk.Stack {
         // });
       }
 
-      if (isHTMLApp(app)) {
+      if (isHTMLApp(app) || isWebCompute(app)) {
         // Basic Redirect - 302
         amplifyApp.addCustomRule({
           source: "/original.html",
